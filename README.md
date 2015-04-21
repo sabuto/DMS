@@ -1,2 +1,0 @@
-# DMS
-Document management system
