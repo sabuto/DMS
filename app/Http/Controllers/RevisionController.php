@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use DB;
 use Input;
 use Session;
+use File;
 
 class RevisionController extends Controller {
 
@@ -113,6 +114,8 @@ class RevisionController extends Controller {
 	 */
 	public function destroy($id)
 	{
+		$path = Revision::find($id)->pluck('location');
+		File::deleteDirectory($path);
 		if(Revision::find($id)->delete())
 		{
 			Session::flash('message', 'The revision has been deleted');
